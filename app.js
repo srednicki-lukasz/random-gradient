@@ -1,10 +1,19 @@
+let direction = 'to right'
+let icon = document.querySelector('.arrow-icon');
+
 let hexFirst = '#000000';
 let hexSecond = '#FFFFFF';
+
 let colorCodeFirst = document.querySelector('.color-code-first');
 let colorCodeSecond = document.querySelector('.color-code-second');
 
 const preview = document.querySelector('.preview');
+
 const btnCopyCss = document.querySelector('.copy-css');
+const btnDirLeft = document.querySelector('.dir-left');
+const btnDirTop = document.querySelector('.dir-top');
+const btnDirRight = document.querySelector('.dir-right');
+const btnDirBottom = document.querySelector('.dir-bottom');
 
 // change background gradient
 preview.addEventListener('click', () => {
@@ -14,7 +23,7 @@ preview.addEventListener('click', () => {
     colorCodeFirst.value = hexFirst;
     colorCodeSecond.value = hexSecond;
 
-    preview.style.backgroundImage = `linear-gradient(to right, ${hexFirst} ,${hexSecond})`;
+    preview.style.backgroundImage = `linear-gradient(${direction}, ${hexFirst} ,${hexSecond})`;
 });
 
 function getHexCode() {
@@ -31,7 +40,7 @@ function getHexCode() {
 // copy to clipboard
 btnCopyCss.addEventListener('click', () => {
     let input = document.createElement('input');
-    input.value = `background-image: linear-gradient(to right, ${hexFirst} ,${hexSecond})`;
+    input.value = `background-image: linear-gradient(${direction}, ${hexFirst} ,${hexSecond})`;
     document.body.appendChild(input);
     input.select();
     input.setSelectionRange(0, 99999);
@@ -39,3 +48,15 @@ btnCopyCss.addEventListener('click', () => {
     document.body.removeChild(input);
     alert('CSS code copied!');
 });
+
+// change gradient direction
+btnDirLeft.addEventListener('click', () => changeDirection('fas fa-long-arrow-alt-left', 'to left'));
+btnDirTop.addEventListener('click', () => changeDirection('fas fa-long-arrow-alt-up', 'to top'));
+btnDirRight.addEventListener('click', () => changeDirection('fas fa-long-arrow-alt-right', 'to right'));
+btnDirBottom.addEventListener('click', () => changeDirection('fas fa-long-arrow-alt-down', 'to bottom'));
+
+function changeDirection(iconClass, gradientDirection) {
+    icon.className = `arrow-icon ${iconClass}`;
+    direction = gradientDirection;
+    preview.style.backgroundImage = `linear-gradient(${direction}, ${hexFirst} ,${hexSecond})`;
+}

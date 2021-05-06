@@ -35,6 +35,7 @@ main {
     cursor: default;
 }
 
-.btn {
+.btn,
+.arrow-icon {
     width: 3em;
 }
