@@ -1,29 +1,15 @@
 let direction = 'to right'
-let icon = document.querySelector('.arrow-icon');
-
 let hexFirst = '#000000';
 let hexSecond = '#FFFFFF';
 
-let colorCodeFirst = document.querySelector('.color-code-first');
-let colorCodeSecond = document.querySelector('.color-code-second');
-
-const preview = document.querySelector('.preview');
-
-const btnCopyCss = document.querySelector('.copy-css');
-const btnDirLeft = document.querySelector('.dir-left');
-const btnDirTop = document.querySelector('.dir-top');
-const btnDirRight = document.querySelector('.dir-right');
-const btnDirBottom = document.querySelector('.dir-bottom');
-
 // change background gradient
-preview.addEventListener('click', () => {
+document.querySelector('.preview').addEventListener('click', () => {
     hexFirst = getHexCode();
     hexSecond = getHexCode();
-
-    colorCodeFirst.value = hexFirst;
-    colorCodeSecond.value = hexSecond;
-
-    preview.style.backgroundImage = `linear-gradient(${direction}, ${hexFirst} ,${hexSecond})`;
+    
+    document.querySelector('.color-code-first').value = hexFirst;
+    document.querySelector('.color-code-second').value = hexSecond;
+    document.querySelector('.preview').style.backgroundImage = `linear-gradient(${direction}, ${hexFirst} ,${hexSecond})`;
 });
 
 function getHexCode() {
@@ -38,7 +24,7 @@ function getHexCode() {
 }
 
 // copy to clipboard
-btnCopyCss.addEventListener('click', () => {
+document.querySelector('.copy-css').addEventListener('click', () => {
     let input = document.createElement('input');
     input.value = `background-image: linear-gradient(${direction}, ${hexFirst} ,${hexSecond})`;
     document.body.appendChild(input);
@@ -50,13 +36,13 @@ btnCopyCss.addEventListener('click', () => {
 });
 
 // change gradient direction
-btnDirLeft.addEventListener('click', () => changeDirection('fas fa-long-arrow-alt-left', 'to left'));
-btnDirTop.addEventListener('click', () => changeDirection('fas fa-long-arrow-alt-up', 'to top'));
-btnDirRight.addEventListener('click', () => changeDirection('fas fa-long-arrow-alt-right', 'to right'));
-btnDirBottom.addEventListener('click', () => changeDirection('fas fa-long-arrow-alt-down', 'to bottom'));
+document.querySelector('.dir-left').addEventListener('click', () => changeDirection('fas fa-long-arrow-alt-left', 'to left'));
+document.querySelector('.dir-top').addEventListener('click', () => changeDirection('fas fa-long-arrow-alt-up', 'to top'));
+document.querySelector('.dir-right').addEventListener('click', () => changeDirection('fas fa-long-arrow-alt-right', 'to right'));
+document.querySelector('.dir-bottom').addEventListener('click', () => changeDirection('fas fa-long-arrow-alt-down', 'to bottom'));
 
 function changeDirection(iconClass, gradientDirection) {
-    icon.className = `arrow-icon ${iconClass}`;
+    document.querySelector('.arrow-icon').className = `arrow-icon ${iconClass}`;
     direction = gradientDirection;
-    preview.style.backgroundImage = `linear-gradient(${direction}, ${hexFirst} ,${hexSecond})`;
+    document.querySelector('.preview').style.backgroundImage = `linear-gradient(${direction}, ${hexFirst} ,${hexSecond})`;
 }
