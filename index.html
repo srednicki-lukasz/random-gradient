@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BG | Gradient</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="./style.css">
+    <!-- BOOTSTRAP CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+    <!-- JS -->
+    <script defer src="./app.js"></script>
+</head>
+<body class="d-flex flex-column">
+    <header class="bg-light text-center py-2">
+        <input type="text" value="#000000" class="color-code-first text-center bg-transparent border-0 rounded" size="6" readonly>
+        <i class="fas fa-long-arrow-alt-right"></i>
+        <input type="text" value="#FFFFFF" class="color-code-second text-center bg-transparent border-0 rounded" size="6" readonly>
+    </header>
+
+    <main class="preview flex-fill"></main>
+
+    <footer class="bg-light text-center py-2">
+        <button class="copy-css btn btn-outline-dark" title="Copy CSS Code" disabled><i class="fab fa-css3"></i></button>
+    </footer>
+</body>
+</html>
