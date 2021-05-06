@@ -27,3 +27,15 @@ function getHexCode() {
 
     return hexCode;
 }
+
+// copy to clipboard
+btnCopyCss.addEventListener('click', () => {
+    let input = document.createElement('input');
+    input.value = `background-image: linear-gradient(to right, ${hexFirst} ,${hexSecond})`;
+    document.body.appendChild(input);
+    input.select();
+    input.setSelectionRange(0, 99999);
+    document.execCommand('copy');
+    document.body.removeChild(input);
+    alert('CSS code copied!');
+});
