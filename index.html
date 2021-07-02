@@ -4,31 +4,59 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BG | Gradient</title>
-    <!-- CSS -->
+    <title>Background Gradient</title>
     <link rel="stylesheet" href="./css/style.css">
-    <!-- BOOTSTRAP CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <!-- FONT AWESOME -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
-    <!-- JS -->
     <script defer src="./js/app.js"></script>
 </head>
-<body class="d-flex flex-column">
-    <header class="bg-light text-center py-2">
-        <input type="text" value="#000000" class="color-code-first text-center bg-transparent border-0 rounded" size="6" readonly>
-        <i class="arrow-icon fas fa-long-arrow-alt-right"></i>
-        <input type="text" value="#FFFFFF" class="color-code-second text-center bg-transparent border-0 rounded" size="6" readonly>
-    </header>
+<body>
+    <div class="h-100 d-flex flex-column">
+        <header class="bg-light d-flex align-items-center p-1 pl-2">
+            <div class="flex-fill">
+                <input type="text" value="#FFFFFF" class="color-one text-center bg-transparent border-0" size="6" readonly>
+                <input type="text" value="#FFFFFF" class="color-two text-center bg-transparent border-0" size="6" readonly>
+            </div>
 
-    <main class="preview flex-fill"></main>
+            <button class="btn btn-transparent shadow-0 outline-0" data-toggle="dropdown">
+                <i class="fas fa-ellipsis-v"></i>
+            </button>
 
-    <footer class="bg-light text-center py-2">
-        <button class="dir-left btn btn-light text-primary mr-1" title="Change gradient direction"><i class="fas fa-long-arrow-alt-left"></i></button>
-        <button class="dir-top btn btn-light text-primary ml-1" title="Change gradient direction"><i class="fas fa-long-arrow-alt-up"></i></button>
-        <button class="copy-css btn btn-outline-dark mx-2" title="Copy CSS Code"><i class="fab fa-css3"></i></button>
-        <button class="dir-bottom btn btn-light text-primary mr-1" title="Change gradient direction"><i class="fas fa-long-arrow-alt-down"></i></button>
-        <button class="dir-right btn btn-light text-primary ml-1" title="Change gradient direction"><i class="fas fa-long-arrow-alt-right"></i></button>
-    </footer>
+            <div class="dropdown-menu">
+                <button class="btn btn-light btn-copy-css dropdown-item rounded-0">
+                    <i class="far fa-file-code"></i>
+                    Copy CSS
+                </button>
+
+                <div class="dropdown-divider"></div>
+                <h6 class="dropdown-header">Gradient direction</h6>
+
+                <button class="btn btn-light btn-direction to-right dropdown-item rounded-0 active">
+                    <i class="fas fa-angle-right mr-2"></i>
+                    To right
+                </button>
+
+                <button class="btn btn-light btn-direction to-left dropdown-item rounded-0">
+                    <i class="fas fa-angle-left mr-2"></i>
+                    To left
+                </button>
+
+                <button class="btn btn-light btn-direction to-top dropdown-item rounded-0">
+                    <i class="fas fa-angle-up mr-2"></i>
+                    To top
+                </button>
+
+                <button class="btn btn-light btn-direction to-bottom dropdown-item rounded-0">
+                    <i class="fas fa-angle-down mr-2"></i>
+                    To bottom
+                </button>
+            </div>
+        </header>
+    
+        <main class="flex-fill"></main>
+    </div>
 </body>
 </html>

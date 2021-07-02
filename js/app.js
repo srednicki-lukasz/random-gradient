@@ -1,48 +1,127 @@
-let direction = 'to right'
-let hexFirst = '#000000';
-let hexSecond = '#FFFFFF';
+// Set initial values.
+window.onload = () => {
+    document.querySelector('.color-one').value = '#FFFFFF';
+    document.querySelector('.color-two').value = '#FFFFFF';
+}
 
-// change background gradient
-document.querySelector('.preview').addEventListener('click', () => {
-    hexFirst = getHexCode();
-    hexSecond = getHexCode();
-    
-    document.querySelector('.color-code-first').value = hexFirst;
-    document.querySelector('.color-code-second').value = hexSecond;
-    document.querySelector('.preview').style.backgroundImage = `linear-gradient(${direction}, ${hexFirst} ,${hexSecond})`;
-});
+class RandomGradient {
 
-function getHexCode() {
-    let hexCode = '#';
-    const chars = ['A', 'B', 'C', 'D', 'E', 'F', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+    /**
+     * Color one.
+     * Initial - #FFFFFF
+     * @memberof RandomGradient
+     */
+    colorOne = '#FFFFFF';
 
-    for (let i = 0; i < 6; i++) {
-        hexCode += chars[Math.floor(Math.random() * chars.length)];
+    /**
+     * Color two.
+     * Initial - #FFFFFF
+     * @memberof RandomGradient
+     */
+    colorTwo = '#FFFFFF';
+
+    /**
+     * Gradient direction.
+     * Initial - to right.
+     * @memberof randomGradient
+     */
+    direction = 'to right';
+
+    constructor() {}
+
+    /**
+     * Generate random colors.
+     * @memberof RandomGradient
+     */
+    generateRandomColors() {
+        this.colorOne = '#';
+        this.colorTwo = '#';
+
+        const availableCharacters = [
+            'A', 'B', 'C', 'D', 'E', 'F',
+            '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'
+        ];
+
+        for (let i = 0; i < 6; i++) {
+            this.colorOne += availableCharacters[
+                Math.floor(Math.random() * availableCharacters.length)
+            ];
+
+            this.colorTwo += availableCharacters[
+                Math.floor(Math.random() * availableCharacters.length)
+            ];
+        }
+
+        return [this.direction, this.colorOne, this.colorTwo];
     }
 
-    return hexCode;
+    /**
+     * Change gradient direction.
+     * @memberof RandomGradient
+     */
+    changeDirection(button) {
+        if (button.classList.contains('to-left')) this.direction = 'to left';
+        else if (button.classList.contains('to-top')) this.direction = 'to top';
+        else if (button.classList.contains('to-right')) this.direction = 'to right';
+        else if (button.classList.contains('to-bottom')) this.direction = 'to bottom';
+
+        return [this.direction, this.colorOne, this.colorTwo];
+    }
+
+    /**
+     * Copy CSS code.
+     * @memberof RandomGradient
+     */
+    copyCSS() {
+        const input = document.createElement('input');
+        const gradient = `${this.direction}, ${this.colorOne} ,${this.colorTwo}`;
+
+        input.value = `background: linear-gradient(${gradient})`;
+        document.body.appendChild(input);
+
+        input.select();
+        input.setSelectionRange(0, 99999);
+
+        document.execCommand('copy');
+        document.body.removeChild(input);
+
+        alert('CSS code copied!');
+    }
 }
 
-// copy to clipboard
-document.querySelector('.copy-css').addEventListener('click', () => {
-    let input = document.createElement('input');
-    input.value = `background-image: linear-gradient(${direction}, ${hexFirst} ,${hexSecond})`;
-    document.body.appendChild(input);
-    input.select();
-    input.setSelectionRange(0, 99999);
-    document.execCommand('copy');
-    document.body.removeChild(input);
-    alert('CSS code copied!');
+const randomGradient = new RandomGradient();
+
+document.querySelector('main').addEventListener('click', () => {
+    const gradientElements = randomGradient.generateRandomColors();
+    const direction = gradientElements[0];
+    const colorOne = gradientElements[1];
+    const colorTwo = gradientElements[2];
+
+    document.querySelector('.color-one').value = colorOne;
+    document.querySelector('.color-two').value = colorTwo;
+
+    document.querySelector('main').style.background = `linear-gradient(${direction}, ${colorOne}, ${colorTwo})`;
 });
 
-// change gradient direction
-document.querySelector('.dir-left').addEventListener('click', () => changeDirection('fas fa-long-arrow-alt-left', 'to left'));
-document.querySelector('.dir-top').addEventListener('click', () => changeDirection('fas fa-long-arrow-alt-up', 'to top'));
-document.querySelector('.dir-right').addEventListener('click', () => changeDirection('fas fa-long-arrow-alt-right', 'to right'));
-document.querySelector('.dir-bottom').addEventListener('click', () => changeDirection('fas fa-long-arrow-alt-down', 'to bottom'));
+document.querySelectorAll('.btn-direction').forEach(button => {
+    button.addEventListener('click', () => {
+        button.classList.add('active');
 
-function changeDirection(iconClass, gradientDirection) {
-    document.querySelector('.arrow-icon').className = `arrow-icon ${iconClass}`;
-    direction = gradientDirection;
-    document.querySelector('.preview').style.backgroundImage = `linear-gradient(${direction}, ${hexFirst} ,${hexSecond})`;
-}
+        button.parentNode.childNodes.forEach(node => {
+            if (node.nodeName === 'BUTTON'
+                && !node.classList.contains('btn-copy-css')
+                && node.classList !== button.classList) {
+                node.classList.remove('active');
+            }
+        });
+        
+        const gradientElements = randomGradient.changeDirection(button);
+        const direction = gradientElements[0];
+        const colorOne = gradientElements[1];
+        const colorTwo = gradientElements[2];
+
+        document.querySelector('main').style.background = `linear-gradient(${direction}, ${colorOne}, ${colorTwo})`;
+    });
+});
+
+document.querySelector('.btn-copy-css').addEventListener('click', () => randomGradient.copyCSS());
