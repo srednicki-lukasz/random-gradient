@@ -23,7 +23,7 @@ class RandomGradient {
     /**
      * Gradient direction.
      * Initial - to right.
-     * @memberof randomGradient
+     * @memberof RandomGradient
      */
     direction = 'to right';
 
@@ -76,7 +76,7 @@ class RandomGradient {
         const input = document.createElement('input');
         const gradient = `${this.direction}, ${this.colorOne} ,${this.colorTwo}`;
 
-        input.value = `background: linear-gradient(${gradient})`;
+        input.value = `background: linear-gradient(${gradient});`;
         document.body.appendChild(input);
 
         input.select();
